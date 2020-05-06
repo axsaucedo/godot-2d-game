@@ -2,6 +2,9 @@ extends "res://Characters/TemplateCharacter.gd"
 
 var motion = Vector2()
 
+func _ready():
+	AudioServer.set_bus_volume_db(0, -12)
+
 func _physics_process(delta):
 	update_movement()
 	move_and_slide(motion)
@@ -23,5 +26,5 @@ func update_movement():
 		motion.x = lerp(motion.x, 0, FRICTION)
 
 func _input(event):
-	if Input.is_action_just_pressed("torch_toggle"):
-		 $Torch.enabled = !$Torch.enabled
+	if Input.is_action_just_pressed("toggle_vision_mode"):
+		 get_tree().call_group("Interface", "cycle_vision_mode")
