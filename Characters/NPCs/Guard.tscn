@@ -14,11 +14,11 @@ script = ExtResource( 4 )
 texture = ExtResource( 1 )
 offset = Vector2( -2, 0 )
 
-[node name="Torch" parent="." index="3" instance=ExtResource( 2 )]
-position = Vector2( 13.9819, 0.139954 )
-offset = Vector2( 320, 0 )
-
-[node name="Timer" type="Timer" parent="." index="4"]
+[node name="Timer" type="Timer" parent="." index="3"]
 wait_time = 3.0
 one_shot = true
+
+[node name="Torch" parent="." index="4" instance=ExtResource( 2 )]
+position = Vector2( 14.2344, 0 )
+offset = Vector2( 320, 0 )
 [connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
