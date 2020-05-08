@@ -16,6 +16,7 @@ export var disguise_slowdown = 0.25
 export var disguise_duration = 5
 export var number_of_disguises = 3
 
+
 func _ready():
 	AudioServer.set_bus_volume_db(0, -12)
 	$Timer.wait_time = disguise_duration
@@ -80,3 +81,9 @@ func disguise():
 	
 func update_disguise_display():
 	get_tree().call_group("DisguiseDisplay", "update_disguises", number_of_disguises)
+
+func _on_Briefcase_collect_briefcase():
+	var loot = Node.new()
+	loot.set_name("briefcase")
+	add_child(loot)
+	get_tree().call_group("Interface", "collect_loot")

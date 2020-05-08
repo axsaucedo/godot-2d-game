@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=2]
+[gd_scene load_steps=8 format=2]
 
 [ext_resource path="res://Levels/TemplateLevel.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Characters/NPCs/Camera.tscn" type="PackedScene" id=2]
@@ -6,6 +6,7 @@
 [ext_resource path="res://Doors/Door.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Doors/LockedDoor.tscn" type="PackedScene" id=5]
 [ext_resource path="res://Computer/Computer.tscn" type="PackedScene" id=6]
+[ext_resource path="res://Items/Briefcase.tscn" type="PackedScene" id=7]
 
 [node name="TemplateLevel" instance=ExtResource( 1 )]
 
@@ -51,7 +52,6 @@ tile_data = PoolIntArray( 196609, -1610612734, 0, 196610, -1073741824, 0, 196611
 
 [node name="Player" parent="." index="1"]
 disguise_duration = 3
-number_of_disguises = 10
 
 [node name="Camera" parent="Cameras" index="0" instance=ExtResource( 2 )]
 position = Vector2( 856.187, 153.467 )
@@ -77,7 +77,8 @@ position = Vector2( 1408, 512 )
 rotation = 4.71239
 
 [node name="Door" parent="Doors" index="0" instance=ExtResource( 4 )]
-position = Vector2( 544, 288 )
+position = Vector2( 290, 96 )
+rotation = 1.5708
 
 [node name="Door2" parent="Doors" index="1" instance=ExtResource( 4 )]
 position = Vector2( 928, 288 )
@@ -90,11 +91,24 @@ position = Vector2( 1120, 480 )
 rotation = 1.5708
 
 [node name="LockedDoor" parent="LockedDoors" index="0" instance=ExtResource( 5 )]
-position = Vector2( 290, 96 )
-rotation = 1.5708
+position = Vector2( 544, 288 )
 
 [node name="Computer" parent="Computers" index="0" instance=ExtResource( 6 )]
 position = Vector2( 160, 240 )
 rotation = -1.5708
 lock_group = "1"
+
+[node name="Exit" parent="." index="9"]
+margin_left = 1248.0
+margin_top = 61.0
+margin_right = 1544.0
+margin_bottom = 181.0
+
+[node name="Loot" type="Node" parent="." index="10"]
+
+[node name="Briefcase" parent="Loot" index="0" instance=ExtResource( 7 )]
+position = Vector2( 1104, 104 )
 [connection signal="combination" from="Computers/Computer" to="LockedDoors/LockedDoor" method="_on_Computer_combination"]
+[connection signal="collect_briefcase" from="Loot/Briefcase" to="Player" method="_on_Briefcase_collect_briefcase"]
+
+[editable path="LockedDoors/LockedDoor"]

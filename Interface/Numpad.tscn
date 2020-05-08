@@ -9,15 +9,15 @@
 [ext_resource path="res://assets/GFX/Interface/PNG/metalPanel_yellowCorner.png" type="Texture" id=11]
 [ext_resource path="res://Interface/Numpad.gd" type="Script" id=12]
 
-[sub_resource type="StyleBoxTexture" id=4]
+[sub_resource type="StyleBoxTexture" id=1]
 texture = ExtResource( 10 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
-[sub_resource type="StyleBoxTexture" id=5]
+[sub_resource type="StyleBoxTexture" id=2]
 texture = ExtResource( 11 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
-[sub_resource type="StyleBoxTexture" id=6]
+[sub_resource type="StyleBoxTexture" id=3]
 texture = ExtResource( 8 )
 region_rect = Rect2( 0, 0, 100, 100 )
 
@@ -183,9 +183,9 @@ margin_top = 156.0
 margin_right = 144.0
 margin_bottom = 196.0
 rect_min_size = Vector2( 40, 40 )
-custom_styles/hover = SubResource( 4 )
-custom_styles/pressed = SubResource( 5 )
-custom_styles/normal = SubResource( 6 )
+custom_styles/hover = SubResource( 1 )
+custom_styles/pressed = SubResource( 2 )
+custom_styles/normal = SubResource( 3 )
 text = "OK"
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]

@@ -23,7 +23,6 @@ func Player_in_FOV():
 	
 	if abs(direction_to_Player.angle_to(npc_facing_direction)) < deg2rad(FOV_TOLERANCE):
 		return true
-		print("here")
 	else:
 		return false
 
