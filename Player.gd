@@ -18,7 +18,6 @@ export var number_of_disguises = 3
 
 
 func _ready():
-	AudioServer.set_bus_volume_db(0, -12)
 	$Timer.wait_time = disguise_duration
 	update_disguise_display()
 	reveal()

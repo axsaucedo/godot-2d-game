@@ -19,34 +19,42 @@ func connect_buttons():
 
 func Button_pressed(button):
 	if button == "OK":
-		check_guess()
+		check_guess_and_update_display()
 	else:
 		enter(int(button))
 
-func check_guess():
+func check_guess_and_update_display():
 	if guess == combination:
 		light.texture = load("res://assets/GFX/Interface/PNG/dotGreen.png")
 		$AudioStreamPlayer.stream = load("res://assets/SFX/threeTone1.ogg")
 		$AudioStreamPlayer.play()
+		display.text = "SUCCESS"
 		$Timer.start()
 	else:
-		reset_lock()
+		update_display_wrong_combination()
 
 func enter(button):
 	$AudioStreamPlayer.stream = load("res://assets/SFX/twoTone1.ogg")
 	$AudioStreamPlayer.play()
 	guess.append(button)
-	update_display()
+	if guess.size() == combination.size():
+		check_guess_and_update_display()
+	else:
+		update_display()
 
 func update_display():
 	display.text = PoolStringArray(guess).join("")
-	if guess.size() == combination.size():
-		check_guess()
 
-func reset_lock():
+func update_display_wrong_combination():
+	display.text = "WRONG"
 	light.texture = load("res://assets/GFX/Interface/PNG/dotRed.png")
-	display.text == ""
+	$AudioStreamPlayer.stream = load("res://assets/SFX/oneTone1.ogg")
 	guess.clear()
+	
+func reset_lock():
+	light.texture = load("res://assets/GFX/Interface/PNG/dotYellow.png")
+	guess.clear()
+	update_display()
 
 func _on_Timer_timeout():
 	emit_signal("combination_correct")

@@ -19,6 +19,7 @@ func _physics_process(delta):
 	navigate()
 	
 func navigate():
+	if not path.size() > 0: return
 	var distance_to_destination = position.distance_to(path[0])
 	if distance_to_destination > minimum_arrival_distance:
 		move()
@@ -43,7 +44,11 @@ func update_path():
 
 func make_path():
 	var new_destination = possible_destinations[randi() % possible_destinations.size()  - 1]
-	path = navigation.get_simple_path(position, new_destination.position, false)
+	path = navigation.get_simple_path(position, new_destination.position, true)
+	if path.size() == 0: 
+		var synthetic_pos1 = Vector2(new_destination.position.x + 30, new_destination.position.y + 30)
+		var synthetic_pos2 = Vector2(new_destination.position.x - 30, new_destination.position.y - 30)
+		path = [synthetic_pos1, synthetic_pos2]
 
 func _on_Timer_timeout():
 	make_path()

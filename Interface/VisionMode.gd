@@ -6,8 +6,8 @@ const NIGHTVISION = Color("37bf62")
 var cooldown = false
 
 func _ready():
-	color = DARK
 	visible = true
+	NIGHTVISION_mode()
 
 func cycle_vision_mode():
 	if not cooldown:
